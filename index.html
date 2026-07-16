@@ -311,6 +311,31 @@ details.faq summary::-webkit-details-marker{ }
 }
 .info-btn.outline{background:var(--card); color:var(--main-deep); border:1.5px solid var(--main);}
 
+/* 나의 권리와 함께 지킬 약속 — 권리(녹색 계열) / 약속(노랑·중립 계열) 색상 구분 */
+h2.sec.rights-h{color:#1E5A8A;}
+h2.sec.resp-h{color:#8A6B0A;}
+details.faq.right-card{border-left:4px solid #2F7D52; background:#F3FAF5;}
+details.faq.resp-card{border-left:4px solid #C99A2E; background:#FFFBF0;}
+html[data-contrast="on"] details.faq.right-card{background:var(--card); border:2px solid #2F7D52; border-left-width:6px;}
+html[data-contrast="on"] details.faq.resp-card{background:var(--card); border:2px solid #C99A2E; border-left-width:6px;}
+
+/* 도움 요청 박스 */
+.help-box{
+  background:var(--soft); border:2px solid var(--main); border-radius:16px;
+  padding:1rem 1.1rem; margin:.9rem 0;
+}
+.help-title{font-weight:800; color:var(--main-deep); margin-bottom:.5rem; font-size:.98rem;}
+.help-box p{font-size:.85rem; color:var(--ink); margin-bottom:.5rem; line-height:1.6;}
+.help-btns{display:flex; flex-direction:column; gap:.6rem; margin-top:.7rem;}
+.help-btns .info-btn{width:100%;}
+
+/* 다른 화면으로 이어주는 안내 카드 */
+.link-card{
+  background:var(--soft); border:1.5px solid var(--main); border-radius:16px;
+  padding:1rem 1.1rem; margin:1rem 0;
+}
+.link-card p{font-size:.86rem; color:var(--ink); margin-bottom:.7rem; line-height:1.6;}
+
 /* 하단 메뉴 */
 nav.bottom{
   position:fixed; bottom:0; left:50%; transform:translateX(-50%);
@@ -319,10 +344,13 @@ nav.bottom{
   padding:.3rem 0 max(.5rem, env(safe-area-inset-bottom)); z-index:10;
 }
 nav.bottom button{
-  flex:1; background:none; border:none; font-family:inherit; cursor:pointer;
-  font-size:.66rem; color:var(--ink-soft); padding:.25rem 0; font-weight:600; min-height:52px;
+  flex:1; min-width:0; background:none; border:none; font-family:inherit; cursor:pointer;
+  font-size:11px; color:var(--ink-soft); padding:.25rem .1rem; font-weight:600; min-height:52px;
 }
-nav.bottom button .nic{display:block; font-size:1.25rem; margin-bottom:.05rem;}
+nav.bottom button .nic{display:block; font-size:20px; margin-bottom:.1rem;}
+nav.bottom button .nlabel{
+  display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
 nav.bottom button.on{color:var(--main-deep); font-weight:800;}
 footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:.8rem 1rem 1rem;}
 </style>
@@ -428,6 +456,12 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
 
         <h2 class="sec">❓ 자주 묻는 질문</h2>
         <div id="faqList"></div>
+
+        <div class="link-card">
+          <div style="font-weight:800;color:var(--main-deep);margin-bottom:.3rem;">근로를 시작하기 전에 꼭 확인하세요</div>
+          <p>자활참여주민에게는 존중받을 권리가 있으며, 안전한 일터를 위해 함께 지켜야 할 약속도 있습니다.</p>
+          <button class="rec-btn" type="button" data-go="rights" style="justify-content:center">나의 권리와 약속 확인하기</button>
+        </div>
       </div>
     </section>
 
@@ -471,6 +505,56 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
         <div class="warn"><b>💬 더 궁금한 점이 있다면</b>아래에 없는 내용은 '전화 걸기'에서 담당자에게 편하게 여쭤보세요.</div>
         <h2 class="sec">자주 묻는 질문</h2>
         <div id="faqListMain"></div>
+        <div class="link-card">
+          <p>자활사업에 참여하면서 존중받아야 할 권리와 함께 지켜야 할 약속을 확인해 보세요.</p>
+          <button class="rec-btn" type="button" data-go="rights" style="justify-content:center">권리와 약속 보기</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 나의 권리와 함께 지킬 약속 -->
+    <section class="screen" id="scr-rights">
+      <div class="pad">
+        <h2 class="sec">🤝 나의 권리와 함께 지킬 약속</h2>
+        <p style="font-size:.85rem;color:var(--ink-soft);margin:-.3rem 0 .8rem;line-height:1.55;">서로의 권리를 존중하고 약속을 지킬 때 더 안전하고 좋은 일터를 만들 수 있습니다.</p>
+
+        <div class="card">
+          <p>자활참여주민은 도움만 받는 사람이 아니라, 존중받아야 할 권리를 가진 주민입니다.</p>
+          <p style="margin-top:.6rem">서로의 권리를 존중하고 함께 약속을 지킬 때 더 안전하고 좋은 일터를 만들 수 있습니다.</p>
+        </div>
+        <div class="warn"><b>🏛️ 함께 알아두세요</b>자활사업은 국민의 세금으로 운영되는 공공사업입니다. 참여주민과 센터는 서로 존중하고 각자의 역할을 성실히 지켜야 합니다.</div>
+
+        <h2 class="sec rights-h">내가 존중받아야 할 권리 6가지</h2>
+        <div id="rightsList"></div>
+
+        <h2 class="sec resp-h">함께 지켜야 할 약속 5가지</h2>
+        <div id="responsibilitiesList"></div>
+
+        <details class="faq" id="opsNoticeBox">
+          <summary>운영규정을 지키기 어려운 일이 생겼다면</summary>
+          <div class="faq-body">
+            <p class="faq-p">무단결근, 반복적인 지각, 허위정보 제공, 폭언·폭행이나 업무방해 등 운영규정을 지키지 않는 일이 반복되면 관련 지침과 센터 운영규정에 따라 상담, 경고, 참여 조정 또는 참여중단 등의 조치가 이루어질 수 있습니다.</p>
+            <p class="faq-p">하지만 건강, 가족문제나 생활상의 어려움으로 규정을 지키기 어려운 사정이 있다면 먼저 사업단 담당 팀장이나 센터 사회복지사에게 말씀해 주세요.</p>
+            <p class="faq-p">센터는 사정을 듣고 가능한 해결방법을 함께 찾겠습니다.</p>
+          </div>
+        </details>
+
+        <div class="help-box">
+          <div class="help-title">😟 불편하거나 부당한 일이 있나요?</div>
+          <p>혼자 참거나 포기하지 마세요.</p>
+          <p>사업단에서 생긴 갈등, 부당한 대우, 개인정보 문제, 위험한 작업이나 설명이 부족한 사항이 있다면 센터 사회복지사에게 상담을 요청할 수 있습니다.</p>
+          <div class="help-btns">
+            <button class="info-btn" type="button" id="rightsCallBtn">📞 평택지역자활센터에 상담하기</button>
+            <button class="info-btn outline" type="button" id="rightsTalkBtn">💬 담당자에게 먼저 이야기해 보세요</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:.9rem;">
+          <p>이 안내는 자활참여주민이 자신의 권리와 역할을 쉽게 이해하도록 만든 자료입니다.</p>
+          <p style="margin-top:.6rem">구체적인 처리기준은 국민기초생활 보장법, 자활사업 안내와 평택지역자활센터 운영규정에 따라 달라질 수 있습니다.</p>
+          <p style="margin-top:.6rem">궁금하거나 부당하다고 느끼는 일이 있으면 혼자 판단하거나 참지 말고 센터 사회복지사에게 말씀해 주세요.</p>
+        </div>
+        <div id="rightsPdfBox"></div>
       </div>
     </section>
 
@@ -499,11 +583,11 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
   </main>
 
   <nav class="bottom" id="bottomNav">
-    <button type="button" data-go="home"><span class="nic">🏠</span>홈</button>
-    <button type="button" data-go="first-guide"><span class="nic">🌱</span>처음 안내</button>
-    <button type="button" data-go="notice"><span class="nic">📢</span>일정·공지</button>
-    <button type="button" data-go="map"><span class="nic">🗺️</span>사업장</button>
-    <button type="button" data-go="call"><span class="nic">📞</span>전화</button>
+    <button type="button" data-go="home"><span class="nic">🏠</span><span class="nlabel">홈</span></button>
+    <button type="button" data-go="first-guide"><span class="nic">🌱</span><span class="nlabel">안내</span></button>
+    <button type="button" data-go="notice"><span class="nic">📢</span><span class="nlabel">공지</span></button>
+    <button type="button" data-go="map"><span class="nic">🗺️</span><span class="nlabel">사업장</span></button>
+    <button type="button" data-go="call"><span class="nic">📞</span><span class="nlabel">전화</span></button>
   </nav>
 </div>
 
@@ -529,7 +613,8 @@ const CONFIG = {
     bus: "",     // ★ 확인된 버스 노선·정류장 정보가 생기면 넣어주세요
     walking: "", // ★ 확인된 도보 안내가 생기면 넣어주세요
     parking: ""  // ★ 확인된 주차 안내가 생기면 넣어주세요
-  }
+  },
+  rightsPdfUrl: "" // ★ '평택지역자활센터 자활참여주민 권리와 의무.pdf'를 같은 폴더에 함께 올리면 경로를 넣어주세요 (예: "./평택지역자활센터 자활참여주민 권리와 의무.pdf")
 };
 
 /* ============================================================
@@ -809,6 +894,105 @@ const faqs = [
   }
 ];
 
+/* 자활참여주민의 권리 6가지 — 교육 활용을 위해 항목별 고유 id 부여 */
+const participantRights = [
+  {
+    id:"right-respect", icon:"🫶", title:"존중받을 권리",
+    summary:"나는 어떤 상황에서도 한 사람의 주민으로 존중받아야 합니다.",
+    paragraphs:[
+      "나는 수급 여부, 나이, 성별, 건강상태, 근로능력이나 과거의 경험과 관계없이 한 사람의 주민으로 존중받을 권리가 있습니다.",
+      "누구도 나에게 모욕적인 말, 차별, 비하 또는 낙인이 되는 표현을 해서는 안 됩니다."
+    ]
+  },
+  {
+    id:"right-fairness", icon:"⚖️", title:"공정하게 참여하고 지원받을 권리",
+    summary:"공정한 자활근로 기회와 필요한 지원을 받을 수 있습니다.",
+    paragraphs:[
+      "나는 관련 법령과 자활사업 운영기준에 따라 공정한 자활근로 기회, 교육, 상담, 사례관리와 지원서비스를 받을 권리가 있습니다.",
+      "사업단 배치나 지원과정에서 부당한 차별을 받지 않아야 합니다."
+    ]
+  },
+  {
+    id:"right-information", icon:"💬", title:"설명을 듣고 의견을 말할 권리",
+    summary:"근로조건과 지원내용을 설명받고 내 의견을 말할 수 있습니다.",
+    paragraphs:[
+      "나는 자활급여, 근로시간, 근로조건, 교육, 참여기간, 평가기준과 변경사항에 대해 이해하기 쉽게 설명을 들을 권리가 있습니다.",
+      "나의 건강상태, 경험, 적성과 희망을 말하고 자활계획을 세우는 과정에 참여할 수 있습니다.",
+      "다만 사업단의 참여인원, 업무 특성, 안전과 운영기준에 따라 모든 희망이 그대로 반영되지는 않을 수 있습니다."
+    ]
+  },
+  {
+    id:"right-privacy", icon:"🔒", title:"개인정보와 사생활을 보호받을 권리",
+    summary:"상담내용과 개인정보는 안전하게 보호되어야 합니다.",
+    paragraphs:[
+      "나의 상담내용, 건강정보, 가족관계, 소득과 재산 등 개인정보는 안전하게 보호되어야 합니다.",
+      "법에서 정한 경우를 제외하고, 본인의 동의 없이 자활사업과 관계없는 목적으로 사용하거나 외부에 공개해서는 안 됩니다."
+    ]
+  },
+  {
+    id:"right-safety", icon:"🦺", title:"안전하게 일할 권리",
+    summary:"안전하고 위생적인 환경에서 일할 수 있어야 합니다.",
+    paragraphs:[
+      "나는 안전하고 위생적인 환경에서 일하며, 필요한 안전교육과 보호장비를 제공받을 권리가 있습니다.",
+      "위험한 상황이나 부당한 지시가 있다고 생각되면 사업단 담당 팀장이나 센터 사회복지사에게 알리고 확인을 요청할 수 있습니다."
+    ]
+  },
+  {
+    id:"right-voice", icon:"🙋", title:"의견을 말하고 도움을 요청할 권리",
+    summary:"불편하거나 부당한 일이 있으면 상담과 조정을 요청할 수 있습니다.",
+    paragraphs:[
+      "나는 자활사업에 참여하면서 생긴 불편, 갈등이나 부당한 대우에 대해 의견을 말하고 상담이나 조정을 요청할 수 있습니다.",
+      "정당하게 의견을 제기했다는 이유만으로 불이익을 받아서는 안 됩니다."
+    ]
+  }
+];
+
+/* 함께 지켜야 할 약속 5가지 (공식 문서에서는 '참여주민의 의무'로 병기 가능) */
+const participantResponsibilities = [
+  {
+    id:"responsibility-attendance", icon:"🕘", title:"정해진 시간과 일정을 지킵니다",
+    summary:"근로, 상담과 교육에 성실하게 참여합니다.",
+    paragraphs:[
+      "나는 건강과 능력의 범위에서 정해진 근로시간, 상담, 교육과 자활활동에 성실하게 참여합니다.",
+      "몸이 아프거나 참여하기 어려운 사정이 생기면 가능한 한 빨리 사업단 담당 팀장이나 센터 사회복지사에게 전화로 알립니다."
+    ]
+  },
+  {
+    id:"responsibility-information", icon:"📝", title:"필요한 정보를 정확하게 알립니다",
+    summary:"자활사업에 필요한 정보를 사실대로 알립니다.",
+    paragraphs:[
+      "나는 건강상태, 근로 가능 여부, 가구원, 소득·재산과 취업상태 등 자활사업 참여와 급여에 영향을 줄 수 있는 변동사항을 사실대로 알립니다.",
+      "어떤 정보를 알려야 하는지 모르겠다면 혼자 판단하지 않고 행정복지센터 담당자나 센터 사회복지사에게 문의합니다."
+    ]
+  },
+  {
+    id:"responsibility-plan", icon:"🧭", title:"함께 세운 자활계획에 협력합니다",
+    summary:"상담을 통해 세운 자활계획을 실천하기 위해 노력합니다.",
+    paragraphs:[
+      "나는 센터 사회복지사와 사업단 담당 팀장과 함께 세운 자활계획을 이해하고 가능한 범위에서 실천하기 위해 노력합니다.",
+      "계획을 실천하기 어렵거나 변경이 필요하면 혼자 중단하지 않고 담당자와 다시 상의합니다."
+    ]
+  },
+  {
+    id:"responsibility-community", icon:"🤝", title:"서로를 존중하고 안전한 일터를 만듭니다",
+    summary:"다른 참여주민과 직원의 인권과 안전을 존중합니다.",
+    paragraphs:[
+      "나는 다른 참여주민과 직원의 인권을 존중합니다.",
+      "폭언, 폭행, 협박, 성희롱, 따돌림, 고의적인 업무방해 등 다른 사람에게 피해를 주는 행동을 하지 않습니다.",
+      "갈등이 생기면 폭력이나 위협으로 해결하지 않고 사업단 담당 팀장이나 센터 사회복지사에게 상담과 조정을 요청합니다."
+    ]
+  },
+  {
+    id:"responsibility-property", icon:"🧰", title:"센터와 사업단의 물품을 소중히 사용합니다",
+    summary:"비품과 장비, 작업공간을 안전하고 책임 있게 사용합니다.",
+    paragraphs:[
+      "자활사업은 국민의 세금으로 운영되는 공공사업입니다.",
+      "나는 사업단의 비품, 장비, 작업공간, 차량과 재료를 안전하고 책임 있게 사용합니다.",
+      "고장, 분실이나 안전문제가 발생하면 즉시 사업단 담당 팀장에게 알립니다."
+    ]
+  }
+];
+
 /* 대상 구분 — route(내부이동) / external(외부 새창) / directCall(바로 전화) */
 const whoOptions = [
   {
@@ -824,7 +1008,8 @@ const whoOptions = [
     menus:[
       { type:"route", route:"notice", label:"📢 일정·교육 확인하기", description:"교육과 센터 일정을 확인하세요" },
       { type:"route", route:"call", label:"📞 담당자에게 전화하기", description:"담당 연락처를 확인하세요" },
-      { type:"route", route:"ai-guide", label:"❓ 자주 묻는 질문", description:"자활근로 중 궁금한 내용을 확인하세요" }
+      { type:"route", route:"ai-guide", label:"❓ 자주 묻는 질문", description:"자활근로 중 궁금한 내용을 확인하세요" },
+      { type:"route", route:"rights", label:"🤝 나의 권리와 함께 지킬 약속", description:"존중받을 권리와 함께 지켜야 할 약속을 확인하세요" }
     ]
   },
   {
@@ -870,7 +1055,8 @@ function el(tag, cls, text){ const n=document.createElement(tag); if(cls) n.clas
    ============================================================ */
 const SCREENS = {
   "home":"홈", "first-guide":"자활사업 쉽게 알아보기", "notice":"일정·공지", "map":"사업장 지도",
-  "call":"전화 걸기", "ai-guide":"궁금한 것 물어보기", "tv":"평자TV", "news":"소식지", "info":"센터 소개"
+  "call":"전화 걸기", "ai-guide":"궁금한 것 물어보기", "tv":"평자TV", "news":"소식지", "info":"센터 소개",
+  "rights":"나의 권리와 함께 지킬 약속"
 };
 function currentRoute(){
   const h = location.hash.replace("#","");
@@ -1298,6 +1484,51 @@ function renderFaq(){
 }
 
 /* ============================================================
+   [I-3] 나의 권리와 함께 지킬 약속 — 권리 6가지 · 약속 5가지
+   (개인별 열람·동의 여부는 저장하지 않음 — 교육용 안내 화면)
+   ============================================================ */
+function buildRightsCard(item, extraClass){
+  const d = el("details","faq "+extraClass);
+  d.id = item.id;
+  const sum = document.createElement("summary");
+  const head = el("span",null, item.icon+"  "+item.title);
+  head.style.cssText = "font-weight:800;";
+  sum.appendChild(head);
+  sum.appendChild(el("span","step-summary", item.summary));
+  d.appendChild(sum);
+  const body = el("div","faq-body");
+  (item.paragraphs||[]).forEach(p=>body.appendChild(el("p","faq-p",p)));
+  d.appendChild(body);
+  return d;
+}
+function renderRights(){
+  const rightsBox = document.getElementById("rightsList");
+  const respBox = document.getElementById("responsibilitiesList");
+  if(rightsBox){
+    rightsBox.replaceChildren();
+    participantRights.forEach(r=>rightsBox.appendChild(buildRightsCard(r,"right-card")));
+  }
+  if(respBox){
+    respBox.replaceChildren();
+    participantResponsibilities.forEach(r=>respBox.appendChild(buildRightsCard(r,"resp-card")));
+  }
+  // 전체 자료(PDF) 안내 — URL이 있을 때만 버튼 표시, 없으면 안내문만 표시
+  const pdfBox = document.getElementById("rightsPdfBox");
+  if(pdfBox){
+    pdfBox.replaceChildren();
+    if(CONFIG.rightsPdfUrl){
+      const btn = el("button","rec-btn","📄 자활참여주민 권리와 의무 전체 자료 보기");
+      btn.type="button";
+      btn.style.justifyContent="center";
+      btn.addEventListener("click", ()=>window.open(CONFIG.rightsPdfUrl, "_blank", "noopener,noreferrer"));
+      pdfBox.appendChild(btn);
+    } else {
+      pdfBox.appendChild(el("div","faq-notice","전체 자료는 센터 사회복지사에게 요청해 주세요."));
+    }
+  }
+}
+
+/* ============================================================
    [J] 캐러셀 점 표시 — IntersectionObserver 사용
    ============================================================ */
 function setupCarousel(){
@@ -1356,6 +1587,10 @@ function init(){
   document.getElementById("quickCall").addEventListener("click", ()=>tryCall("사무실 담당자", CONFIG.mainPhone, CONFIG.operatingHours));
   document.getElementById("homeCallBtn").addEventListener("click", ()=>go("call"));
   document.getElementById("whoReset").addEventListener("click", ()=>{ store.del("who"); renderWho(); });
+  document.getElementById("rightsCallBtn").addEventListener("click", ()=>tryCall("사무실 담당자", CONFIG.mainPhone, CONFIG.operatingHours));
+  document.getElementById("rightsTalkBtn").addEventListener("click", ()=>{
+    alert("사업단 담당 팀장이나 센터 사회복지사에게 상황을 설명하고 상담을 요청해 주세요. 긴급하거나 안전과 관련된 상황이라면 즉시 전화로 알려주세요.");
+  });
   document.getElementById("openMapBtn").addEventListener("click", ()=>{
     if(CONFIG.isDemo){ alert("[시제품 안내]\n실제 운영 시 평택자활 사업장 지도가 열립니다.\nCONFIG의 mapUrl에 주소를 넣어주세요."); }
     else{ window.open(CONFIG.mapUrl, "_blank", "noopener,noreferrer"); }
@@ -1367,7 +1602,7 @@ function init(){
 
   // 목록 그리기
   renderWho(); renderNotices(); renderContacts(); renderTeamFilter(); renderTeams();
-  renderVideos(); renderNews(); renderSteps(); renderFaq(); renderInfo();
+  renderVideos(); renderNews(); renderSteps(); renderFaq(); renderInfo(); renderRights();
   setupCarousel();
 
   // 첫 화면
