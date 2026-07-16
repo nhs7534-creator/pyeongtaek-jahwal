@@ -452,9 +452,9 @@ const CONFIG = {
   isDemo: true,                       // 실제 운영 시 false 로 변경
   centerName: "평택지역자활센터",
   serviceName: "평택자활 손안의 안내소",
-  mainPhone: "031-000-0000",          // ★ 실제 대표번호로 교체
-  address: "평택시 ○○로 000",         // ★ 실제 주소로 교체
-  operatingHours: "평일 오전 9시 ~ 오후 6시 (점심 12시~1시)",
+  mainPhone: "031-658-4788",
+  address: "경기도 평택시 평택4로 26, 2층·3층",
+  operatingHours: "평일 오전 9시 ~ 오후 6시",
   mapUrl: "https://www.google.com/maps", // ★ 평택 함께지도 URL로 교체
   aiUrl: "",                          // ★ AI 자활안내(노트북LM 등) URL로 교체
   todayNotice: "7월 참여주민 교육 일정을 확인해 주세요."
@@ -477,10 +477,12 @@ const notices = [
 ];
 
 const contacts = [
-  { id:"gw",   icon:"🚪", department:"첫 상담 (게이트웨이)", description:"자활이 처음이신 분은 여기로", phone:"031-000-0001", target:"new" },
-  { id:"main", icon:"🏢", department:"사무실",             description:"무엇이든 물어보실 때",       phone:"031-000-0000", target:"all" },
-  { id:"save", icon:"💰", department:"희망저축 통장",       description:"저축 도와주는 통장 상담",    phone:"031-000-0002", target:"saving" },
-  { id:"work", icon:"🧑‍🌾", department:"일터 문의",          description:"일하는 곳에 대한 질문",      phone:"031-000-0003", target:"participant" }
+  { id:"gw",   icon:"🚪", department:"첫 상담 (게이트웨이)", description:"자활이 처음이신 분은 여기로", phone:"070-7843-1789", target:"new" },
+  { id:"main", icon:"🏢", department:"사무실",             description:"무엇이든 물어보실 때",       phone:"031-658-4788", target:"all" },
+  { id:"save", icon:"💰", department:"희망저축 통장",       description:"저축 도와주는 통장 상담",    phone:"031-657-4788", target:"saving" }
+  // 참고: 일터 문의(자활근로 사업단) 전화번호는 아직 없어 항목을 뺐습니다.
+  // 나중에 번호가 생기면 아래 형식으로 한 줄 추가하면 됩니다.
+  // , { id:"work", icon:"🧑‍🌾", department:"일터 문의", description:"일하는 곳에 대한 질문", phone:"031-000-0000", target:"participant" }
 ];
 
 const teams = [
