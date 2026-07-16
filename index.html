@@ -586,6 +586,11 @@ const store = {
 const WEEKDAYS = ["일","월","화","수","목","금","토"];
 function parseDate(s){ const [y,m,d]=s.split("-").map(Number); return new Date(y, m-1, d); }
 function fmtDate(s){ const dt=parseDate(s); return (dt.getMonth()+1)+"월 "+dt.getDate()+"일 ("+WEEKDAYS[dt.getDay()]+")"; }
+function fmtDateList(s){
+  // "2026-07-01, 2026-07-05" 처럼 여러 날짜가 쉼표로 온 경우 각각 요일과 함께 표시
+  return String(s).split(",").map(x=>x.trim()).filter(Boolean).map(fmtDate).join(",  ");
+}
+function firstDateOf(s){ return String(s).split(",")[0].trim(); }
 function el(tag, cls, text){ const n=document.createElement(tag); if(cls) n.className=cls; if(text!==undefined) n.textContent=text; return n; }
 
 /* ============================================================
@@ -703,13 +708,13 @@ async function renderNotices(){
     }
   }
 
-  const sorted=[...list].sort((a,b)=> String(b.date).localeCompare(String(a.date)));
+  const sorted=[...list].sort((a,b)=> firstDateOf(b.date).localeCompare(firstDateOf(a.date)));
   sorted.forEach((n,i)=>{
     const c=el("div","card");
     const bd=el("span","badge"+(n.category==="모집"?" y":""), n.category);
     c.appendChild(bd);
     if(n.important){ c.appendChild(el("span","badge r","중요")); }
-    c.appendChild(el("div","date", fmtDate(n.date)));
+    c.appendChild(el("div","date", fmtDateList(n.date)));
     c.appendChild(el("h3",null,n.title));
     c.appendChild(el("p",null,n.description));
     full.appendChild(c);
