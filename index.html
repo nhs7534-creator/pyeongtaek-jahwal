@@ -456,6 +456,7 @@ const CONFIG = {
   operatingHours: "평일 오전 9시 ~ 오후 6시",
   mapUrl: "https://nhs7534-creator.github.io/pyeongtaek-map/", // 평택함께지도
   aiUrl: "", // 로그인 필요 문제로 사용 중단 — 대신 로그인 없는 FAQ로 대체함 (아래 faqs 배열 참고)
+  noticesApiUrl: "https://script.google.com/macros/s/AKfycbyCwH_6_cUVU4eKhcsx-d6shXvu0DQ0o7mGEklmznJRenObniWootf2xO8RBmI3GP03lg/exec", // 공지사항 구글폼→시트 연결
   todayNotice: "7월 참여주민 교육 일정을 확인해 주세요."
 };
 
@@ -686,11 +687,23 @@ function renderWho(){
 /* ============================================================
    [I] 목록 그리기 — 데이터 배열에서 자동 생성 (textContent 사용)
    ============================================================ */
-function renderNotices(){
+async function renderNotices(){
   const full=document.getElementById("noticeList");
   const home=document.getElementById("homeNotices");
   full.replaceChildren(); home.replaceChildren();
-  const sorted=[...notices].sort((a,b)=> b.date.localeCompare(a.date));
+
+  let list = notices; // 기본값: 예시 공지 (시트 연결 전이거나 불러오기 실패 시 사용)
+  if(CONFIG.noticesApiUrl){
+    try{
+      const res = await fetch(CONFIG.noticesApiUrl);
+      const remote = await res.json();
+      if(Array.isArray(remote) && remote.length){ list = remote; }
+    }catch(e){
+      console.error("공지사항을 불러오지 못했습니다. 예시 공지로 표시합니다.", e);
+    }
+  }
+
+  const sorted=[...list].sort((a,b)=> String(b.date).localeCompare(String(a.date)));
   sorted.forEach((n,i)=>{
     const c=el("div","card");
     const bd=el("span","badge"+(n.category==="모집"?" y":""), n.category);
