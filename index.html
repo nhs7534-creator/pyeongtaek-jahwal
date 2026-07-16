@@ -148,12 +148,14 @@ h2.sec:first-child{margin-top:.2rem;}
 
 /* 대상 선택 */
 .who{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:.9rem 1rem; margin-bottom:1rem;}
-.who h3{font-size:.95rem; margin-bottom:.6rem;}
-.who .chips{display:grid; grid-template-columns:1fr 1fr; gap:.5rem;}
+.who h3{font-size:.95rem; margin-bottom:.2rem;}
+.who-hint{font-size:.78rem; color:var(--ink-soft); margin-bottom:.6rem; line-height:1.4;}
+.who .chips{display:grid; grid-template-columns:1fr; gap:.5rem;}
 .chip{
   border:1.5px solid var(--line); background:var(--bg); border-radius:12px;
-  font-family:inherit; font-size:.85rem; font-weight:700; color:var(--ink);
-  padding:.6rem .5rem; cursor:pointer; min-height:48px;
+  font-family:inherit; font-size:.88rem; font-weight:700; color:var(--ink);
+  padding:.7rem .8rem; cursor:pointer; min-height:48px; text-align:left;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 .chip.on{background:var(--main); color:#fff; border-color:var(--main);}
 .who .reset{
@@ -316,6 +318,9 @@ h2.sec.rights-h{color:#1E5A8A;}
 h2.sec.resp-h{color:#8A6B0A;}
 details.faq.right-card{border-left:4px solid #2F7D52; background:#F3FAF5;}
 details.faq.resp-card{border-left:4px solid #C99A2E; background:#FFFBF0;}
+.right-card summary, .resp-card summary{flex-direction:column; align-items:flex-start; gap:.3rem; padding:.8rem 0;}
+.right-card summary .r-title, .resp-card summary .r-title{font-size:1rem; font-weight:800; color:var(--ink); line-height:1.4;}
+.right-card summary .r-summary, .resp-card summary .r-summary{font-size:.82rem; font-weight:500; color:var(--ink-soft); line-height:1.5;}
 html[data-contrast="on"] details.faq.right-card{background:var(--card); border:2px solid #2F7D52; border-left-width:6px;}
 html[data-contrast="on"] details.faq.resp-card{background:var(--card); border:2px solid #C99A2E; border-left-width:6px;}
 
@@ -392,7 +397,8 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
         </button>
 
         <div class="who" id="whoBox">
-          <h3>어떤 일로 오셨나요? <span style="font-weight:500;font-size:.78rem;color:var(--ink-soft)">(누르면 맞는 메뉴를 먼저 보여드려요)</span></h3>
+          <h3>어떤 일로 오셨나요?</h3>
+          <p class="who-hint">누르시면 맞는 메뉴를 먼저 보여드려요</p>
           <div class="chips" id="whoChips"></div>
           <button class="reset" type="button" id="whoReset" hidden>선택 다시 하기</button>
         </div>
@@ -408,7 +414,7 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
 
         <h2 class="sec">🧭 메뉴</h2>
         <div class="tiles">
-          <button class="tile" type="button" data-go="map"><div class="ic">🗺️</div><div><b>사업장 지도</b><br><span>사업단 위치 확인</span></div></button>
+          <button class="tile" type="button" data-go="map"><div class="ic">📍</div><div><b>사업장 지도</b><br><span>사업단 위치 확인</span></div></button>
           <button class="tile" type="button" data-go="ai-guide"><div class="ic">❓</div><div><b>궁금한 것 물어보기</b><br><span>로그인 없이 바로 보기</span></div></button>
           <button class="tile" type="button" data-go="call"><div class="ic">📞</div><div><b>전화 걸기</b><br><span>담당자별 번호</span></div></button>
           <button class="tile" type="button" data-go="info"><div class="ic">🏢</div><div><b>센터 소개</b><br><span>인사말·오시는 길</span></div></button>
@@ -476,9 +482,9 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
     <!-- 지도 -->
     <section class="screen" id="scr-map">
       <div class="pad">
-        <h2 class="sec">🗺️ 사업장 지도</h2>
+        <h2 class="sec">📍 사업장 지도</h2>
         <div class="card"><p>사업단은 자활참여주민이 함께 일하고 기술을 배우는 일터입니다. 아래 지도와 목록에서 사업단의 위치를 확인할 수 있습니다.</p></div>
-        <button class="rec-btn" type="button" id="openMapBtn" style="justify-content:center">🗺️ 평택자활 사업장 지도 열기</button>
+        <button class="rec-btn" type="button" id="openMapBtn" style="justify-content:center">📍 평택자활 사업장 지도 열기</button>
         <h2 class="sec">🏭 자활근로사업단 목록 <span id="teamCount" style="font-size:.75rem;color:var(--ink-soft);font-weight:500;"></span></h2>
         <div class="chips" id="teamFilter" style="display:flex;flex-wrap:wrap;grid-template-columns:none;margin-bottom:.8rem;"></div>
         <div id="teamList"></div>
@@ -515,8 +521,7 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
     <!-- 나의 권리와 함께 지킬 약속 -->
     <section class="screen" id="scr-rights">
       <div class="pad">
-        <h2 class="sec">🤝 나의 권리와 함께 지킬 약속</h2>
-        <p style="font-size:.85rem;color:var(--ink-soft);margin:-.3rem 0 .8rem;line-height:1.55;">서로의 권리를 존중하고 약속을 지킬 때 더 안전하고 좋은 일터를 만들 수 있습니다.</p>
+        <p style="font-size:.85rem;color:var(--ink-soft);margin:.2rem 0 .8rem;line-height:1.55;">서로의 권리를 존중하고 약속을 지킬 때 더 안전하고 좋은 일터를 만들 수 있습니다.</p>
 
         <div class="card">
           <p>자활참여주민은 도움만 받는 사람이 아니라, 존중받아야 할 권리를 가진 주민입니다.</p>
@@ -586,7 +591,7 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
     <button type="button" data-go="home"><span class="nic">🏠</span><span class="nlabel">홈</span></button>
     <button type="button" data-go="first-guide"><span class="nic">🌱</span><span class="nlabel">안내</span></button>
     <button type="button" data-go="notice"><span class="nic">📢</span><span class="nlabel">공지</span></button>
-    <button type="button" data-go="map"><span class="nic">🗺️</span><span class="nlabel">사업장</span></button>
+    <button type="button" data-go="map"><span class="nic">📍</span><span class="nlabel">사업장</span></button>
     <button type="button" data-go="call"><span class="nic">📞</span><span class="nlabel">전화</span></button>
   </nav>
 </div>
@@ -1022,7 +1027,7 @@ const whoOptions = [
   {
     key:"visitor", label:"센터·사업단 위치를 찾고 있어요",
     menus:[
-      { type:"route", route:"map", label:"🗺️ 사업단 위치 보기", description:"평택지역자활센터 사업단의 위치를 확인하세요" },
+      { type:"route", route:"map", label:"📍 사업단 위치 보기", description:"평택지역자활센터 사업단의 위치를 확인하세요" },
       { type:"route", route:"info", label:"🏢 센터 소개·오시는 길", description:"센터가 하는 일과 찾아오는 방법을 확인하세요" },
       { type:"route", route:"call", label:"📞 사무실 전화", description:"평택지역자활센터에 문의하세요" }
     ]
@@ -1073,6 +1078,9 @@ function render(){
   const sub = document.getElementById("subbar");
   sub.classList.toggle("show", !isHome);
   document.getElementById("subTitle").textContent = SCREENS[route];
+  // 전화 화면은 아래에 연락처 목록이 바로 보이므로 상단의 빠른전화 버튼은 숨김(중복 방지)
+  const quickCallBtn = document.getElementById("quickCall");
+  if(quickCallBtn) quickCallBtn.hidden = (route === "call");
 
   document.querySelectorAll("nav.bottom button").forEach(b=>{
     b.classList.toggle("on", b.dataset.go===route);
@@ -1330,7 +1338,7 @@ function buildInfoLocation(container){
 
   // 지도·길찾기·주소복사·전화 버튼
   const grid = el("div","info-btn-grid");
-  const mapBtn = el("button","info-btn","🗺️ 지도에서 위치 보기"); mapBtn.type="button";
+  const mapBtn = el("button","info-btn","📍 지도에서 위치 보기"); mapBtn.type="button";
   mapBtn.addEventListener("click", ()=>openExternal("centerMapUrl", MAP_MISSING_MSG));
   const dirBtn = el("button","info-btn","🚶 길찾기 시작"); dirBtn.type="button";
   dirBtn.addEventListener("click", ()=>openExternal("centerDirectionsUrl", MAP_MISSING_MSG));
@@ -1491,10 +1499,8 @@ function buildRightsCard(item, extraClass){
   const d = el("details","faq "+extraClass);
   d.id = item.id;
   const sum = document.createElement("summary");
-  const head = el("span",null, item.icon+"  "+item.title);
-  head.style.cssText = "font-weight:800;";
-  sum.appendChild(head);
-  sum.appendChild(el("span","step-summary", item.summary));
+  sum.appendChild(el("span","r-title", item.icon+"  "+item.title));
+  sum.appendChild(el("span","r-summary", item.summary));
   d.appendChild(sum);
   const body = el("div","faq-body");
   (item.paragraphs||[]).forEach(p=>body.appendChild(el("p","faq-p",p)));
@@ -1522,9 +1528,8 @@ function renderRights(){
       btn.style.justifyContent="center";
       btn.addEventListener("click", ()=>window.open(CONFIG.rightsPdfUrl, "_blank", "noopener,noreferrer"));
       pdfBox.appendChild(btn);
-    } else {
-      pdfBox.appendChild(el("div","faq-notice","전체 자료는 센터 사회복지사에게 요청해 주세요."));
     }
+    // rightsPdfUrl이 없으면 버튼도 안내문도 표시하지 않음 (깨진 링크·불필요한 문구 방지)
   }
 }
 
