@@ -3,9 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="application-name" content="평택자활 길잡이">
-<meta name="apple-mobile-web-app-title" content="평택자활 길잡이">
-<title>평택자활 길잡이</title>
+<meta name="application-name" content="토닥토닥 길잡이">
+<meta name="apple-mobile-web-app-title" content="토닥토닥 길잡이">
+<title>토닥토닥 길잡이</title>
+
+<!-- 카카오톡/SNS 공유 시 썸네일과 제목이 뜨도록 하는 태그 (정적 태그라 크롤러가 그대로 읽음) -->
+<!-- ⚠️ CONFIG.serviceName / serviceSubtitle을 바꾸면 아래 og: 태그들도 함께 맞춰주세요 -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="평택지역자활센터">
+<meta property="og:title" content="토닥토닥 길잡이 — 평택지역자활센터">
+<meta property="og:description" content="자활사업 신청부터 사업단까지, 필요한 정보를 쉽고 따뜻하게 알려드립니다.">
+<meta property="og:image" content="https://nhs7534-creator.github.io/pyeongtaek-jahwal/thumbnail.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nhs7534-creator.github.io/pyeongtaek-jahwal/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="토닥토닥 길잡이 — 평택지역자활센터">
+<meta name="twitter:description" content="자활사업 신청부터 사업단까지, 필요한 정보를 쉽고 따뜻하게 알려드립니다.">
+<meta name="twitter:image" content="https://nhs7534-creator.github.io/pyeongtaek-jahwal/thumbnail.png">
 <style>
 /* ============================================================
    [1] 기본 색상과 크기 — 평택지역자활센터 녹색 계열 고정
@@ -366,7 +381,7 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
 
   <header class="top" id="homeHeader">
     <div class="top-row">
-      <div class="logo"><span id="logoTitle">평택자활 길잡이</span><small id="logoSub"></small></div>
+      <div class="logo"><span id="logoTitle">토닥토닥 길잡이</span><small id="logoSub"></small></div>
       <div class="hbtns">
         <button class="hbtn" id="fontBtn" type="button" aria-label="글자 크기 바꾸기">가 글자크기</button>
         <button class="hbtn" id="contrastBtn" type="button" aria-label="고대비 화면 켜고 끄기">◐ 고대비</button>
@@ -603,8 +618,8 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
 const CONFIG = {
   isDemo: false,
   centerName: "평택지역자활센터",
-  serviceName: "평택자활 길잡이",
-  serviceSubtitle: "자활사업 신청부터 일터까지, 필요한 정보를 쉽게 알려드립니다.",
+  serviceName: "토닥토닥 길잡이",
+  serviceSubtitle: "자활사업 신청부터 사업단까지, 필요한 정보를 쉽고 따뜻하게 알려드립니다.",
   mainPhone: "031-658-4788",
   address: "경기도 평택시 평택4로 26, 2층·3층",
   operatingHours: "평일 오전 9시 ~ 오후 6시",
