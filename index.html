@@ -334,8 +334,8 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
         <h2 class="sec">🎬 볼거리·읽을거리</h2>
       </div>
       <div class="caro" id="caro">
-        <button class="slide sl-tv" type="button" data-go="tv"><span class="tag">평자TV</span><div><b>첫 출근부터 창업까지</b><span>선생님들이 직접 연기한 자활 이야기</span></div></button>
-        <button class="slide sl-news" type="button" data-go="news"><span class="tag">소식지</span><div><b>여름호 소식지</b><span>우리 센터와 이웃들의 이야기</span></div></button>
+        <button class="slide sl-tv" type="button" data-go="tv"><span class="tag">평자TV</span><div><b>평자극장</b><span>자활사업 참여 과정을 담은 다큐멘터리</span></div></button>
+        <button class="slide sl-news" type="button" data-go="news"><span class="tag">소식지</span><div><b>2026년 1분기 소식지</b><span>평택자활 26년 1분기 소식지가 나왔어요</span></div></button>
         <button class="slide sl-ai" type="button" data-go="ai-guide"><span class="tag">궁금한 것 물어보기</span><div><b>자주 묻는 질문 모음</b><span>로그인 없이 바로 답을 확인하세요</span></div></button>
       </div>
       <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
@@ -522,18 +522,14 @@ const teams = [
 ];
 
 const videos = [
-  { id:1, title:"첫 출근부터 창업까지 — 어느 이웃의 1년", description:"우리 센터 선생님들이 직접 배우가 되어 만든 이야기",
-    videoUrl:"", duration:"12:40", category:"자활 드라마", color:"linear-gradient(150deg,#B05A45,#D98A70)", badge:"인기", badgeClass:"r" },
-  { id:2, title:"자활근로가 뭔가요? 3분이면 압니다", description:"처음 오신 분을 위한 짧은 영상",
-    videoUrl:"", duration:"03:15", category:"3분 설명", color:"linear-gradient(150deg,#2F7D52,#5CA87E)", badge:"안내", badgeClass:"" },
-  { id:3, title:"행복밥상의 하루", description:"점심 준비로 바쁜 주방의 아침 모습",
-    videoUrl:"", duration:"07:22", category:"일터 이야기", color:"linear-gradient(150deg,#7c8894,#a7b2bc)", badge:"현장", badgeClass:"" }
+  { id:1, title:"평자극장", description:"자활사업 참여 과정을 한편의 다큐로 담았습니다",
+    videoUrl:"https://www.youtube.com/watch?v=0Sk4-_RLcxE", duration:"", category:"평자극장",
+    color:"linear-gradient(150deg,#B05A45,#D98A70)", badge:"인기", badgeClass:"r" }
 ];
 
 const newsletters = [
-  { id:1, title:"2026 여름호 — \u201c땀방울이 여무는 계절\u201d", description:"일터 소식 · 이웃 인터뷰 · 하반기 일정", link:"", latest:true },
-  { id:2, title:"2026 봄호", description:"새 식구 소개 · 저축 성공 이야기", link:"", latest:false },
-  { id:3, title:"2025 겨울호", description:"한 해 돌아보기 · 고마운 분들께 인사", link:"", latest:false }
+  { id:1, title:"2026년 1분기 소식지", description:"평택자활 26년 1분기 소식지입니다",
+    link:"https://ptjahwal.or.kr/menu06/webzine/?mod=document&uid=282", latest:true }
 ];
 
 const gwSchedule = [
@@ -786,7 +782,7 @@ function renderVideos(){
     ttl.style.cssText="position:absolute;left:.7rem;top:.6rem;font-size:.8rem;font-weight:800;";
     th.appendChild(ttl);
     th.appendChild(el("div","play","▶"));
-    th.appendChild(el("span","len",v.duration));
+    if(v.duration){ th.appendChild(el("span","len",v.duration)); }
     const meta=el("div","meta");
     meta.appendChild(el("span","badge"+(v.badgeClass?" "+v.badgeClass:""), v.badge));
     meta.appendChild(el("h3",null,v.title));
