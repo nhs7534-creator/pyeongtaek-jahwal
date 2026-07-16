@@ -376,7 +376,8 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
         <h2 class="sec">🗺️ 일터 지도</h2>
         <div class="card"><p>아래 버튼을 누르면 <b>평택 함께지도</b>에서 일터 위치를 지도로 볼 수 있어요.</p></div>
         <button class="rec-btn" type="button" id="openMapBtn" style="justify-content:center">🗺️ 지도 열어서 보기</button>
-        <h2 class="sec">🏭 일터 목록</h2>
+        <h2 class="sec">🏭 일터 목록 <span id="teamCount" style="font-size:.75rem;color:var(--ink-soft);font-weight:500;"></span></h2>
+        <div class="chips" id="teamFilter" style="display:flex;flex-wrap:wrap;grid-template-columns:none;margin-bottom:.8rem;"></div>
         <div id="teamList"></div>
       </div>
     </section>
@@ -712,16 +713,45 @@ function renderContacts(){
     box.appendChild(b);
   });
 }
+let teamFilterCat = "전체"; // 현재 선택된 분야 필터
+function renderTeamFilter(){
+  const box=document.getElementById("teamFilter");
+  box.replaceChildren();
+  const cats = ["전체", ...new Set(teams.map(t=>t.category))];
+  cats.forEach(cat=>{
+    const b=el("button","chip"+(teamFilterCat===cat?" on":""), cat);
+    b.type="button";
+    b.style.cssText="flex:0 0 auto; margin:0 .35rem .35rem 0; padding:.45rem .8rem; font-size:.8rem;";
+    b.addEventListener("click", ()=>{ teamFilterCat=cat; renderTeamFilter(); renderTeams(); });
+    box.appendChild(b);
+  });
+}
 function renderTeams(){
   const box=document.getElementById("teamList");
   box.replaceChildren();
-  teams.forEach(t=>{
-    const c=el("div","card");
-    c.appendChild(el("span","badge",t.category));
-    c.appendChild(el("h3",null,t.name));
-    c.appendChild(el("p",null, t.hours ? (t.address+" · "+t.hours) : t.address));
-    box.appendChild(c);
-  });
+  const list = teamFilterCat==="전체" ? teams : teams.filter(t=>t.category===teamFilterCat);
+  document.getElementById("teamCount").textContent = "· 총 "+list.length+"곳";
+
+  if(teamFilterCat==="전체"){
+    // 분야별로 묶어서 그룹 제목과 함께 표시
+    const groups = {};
+    teams.forEach(t=>{ (groups[t.category] ||= []).push(t); });
+    Object.keys(groups).forEach(cat=>{
+      const h=el("h3",null, cat+" ("+groups[cat].length+"곳)");
+      h.style.cssText="font-size:.92rem;color:var(--main-deep);margin:.9rem 0 .5rem;";
+      box.appendChild(h);
+      groups[cat].forEach(t=>box.appendChild(teamCard(t, false)));
+    });
+  } else {
+    list.forEach(t=>box.appendChild(teamCard(t, true)));
+  }
+}
+function teamCard(t, showBadge){
+  const c=el("div","card");
+  if(showBadge) c.appendChild(el("span","badge",t.category));
+  c.appendChild(el("h3",null,t.name));
+  c.appendChild(el("p",null, t.hours ? (t.address+" · "+t.hours) : t.address));
+  return c;
 }
 function renderVideos(){
   const box=document.getElementById("videoList");
@@ -872,7 +902,7 @@ function init(){
   });
 
   // 목록 그리기
-  renderWho(); renderNotices(); renderContacts(); renderTeams();
+  renderWho(); renderNotices(); renderContacts(); renderTeamFilter(); renderTeams();
   renderVideos(); renderNews(); renderGw(); renderSteps(); renderFaq();
   setupCarousel();
 
