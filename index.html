@@ -57,6 +57,7 @@ body{
   font-family:"Pretendard Variable",Pretendard,-apple-system,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   background:#E9EDE7; color:var(--ink); line-height:1.6;
   display:flex; justify-content:center; min-height:100vh;
+  word-break:keep-all; overflow-wrap:break-word;
 }
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
@@ -239,9 +240,10 @@ h2.sec:first-child{margin-top:.2rem;}
   width:50px; height:50px; border-radius:50%; background:var(--soft);
   display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
 }
-.callbtn b{display:block; font-size:1rem;}
-.callbtn span{font-size:.8rem; color:var(--ink-soft);}
-.callbtn .go{margin-left:auto; background:var(--main); color:#fff; border-radius:999px; padding:.5rem 1rem; font-size:.85rem; font-weight:700; flex-shrink:0;}
+.callbtn b{display:block; font-size:1rem; line-height:1.35;}
+.callbtn span{font-size:.8rem; color:var(--ink-soft); line-height:1.4;}
+.callbtn .mid{flex:1; min-width:0;}
+.callbtn .go{margin-left:auto; background:var(--main); color:#fff; border-radius:999px; padding:.5rem .85rem; font-size:.85rem; font-weight:700; flex-shrink:0;}
 
 /* 영상 */
 .vid{background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin-bottom:.8rem; cursor:pointer; width:100%; text-align:left; font-family:inherit; padding:0;}
@@ -277,8 +279,14 @@ h2.sec:first-child{margin-top:.2rem;}
 
 /* FAQ / 아코디언 공통 */
 details.faq{background:var(--card); border:1px solid var(--line); border-radius:14px; margin-bottom:.6rem; padding:.2rem .9rem;}
-details.faq summary{font-size:.92rem; font-weight:700; padding:.6rem 0; cursor:pointer; min-height:48px; display:flex; align-items:center; line-height:1.4;}
-details.faq summary::-webkit-details-marker{ }
+details.faq summary{font-size:.92rem; font-weight:700; padding:.6rem 0; cursor:pointer; min-height:48px; display:flex; align-items:center; line-height:1.4; list-style:none;}
+details.faq summary::-webkit-details-marker{display:none;}
+details.faq summary::marker{content:"";}
+details.faq summary::after{
+  content:"⌄"; margin-left:auto; padding-left:.6rem; font-size:1.1rem; color:var(--ink-soft);
+  flex-shrink:0; align-self:flex-start; transition:transform .15s;
+}
+details.faq[open] summary::after{transform:rotate(180deg);}
 .faq-body{padding:0 0 .9rem;}
 .faq-p{font-size:.86rem; color:var(--ink-soft); margin-bottom:.6rem; line-height:1.65;}
 .faq-p:last-child{margin-bottom:0;}
@@ -430,7 +438,7 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
         <h2 class="sec">🧭 메뉴</h2>
         <div class="tiles">
           <button class="tile" type="button" data-go="map"><div class="ic">📍</div><div><b>사업장 지도</b><br><span>사업단 위치 확인</span></div></button>
-          <button class="tile" type="button" data-go="ai-guide"><div class="ic">❓</div><div><b>궁금한 것 물어보기</b><br><span>로그인 없이 바로 보기</span></div></button>
+          <button class="tile" type="button" data-go="ai-guide"><div class="ic">❓</div><div><b>질문하기</b><br><span>로그인 없이 바로 보기</span></div></button>
           <button class="tile" type="button" data-go="call"><div class="ic">📞</div><div><b>전화 걸기</b><br><span>담당자별 번호</span></div></button>
           <button class="tile" type="button" data-go="info"><div class="ic">🏢</div><div><b>센터 소개</b><br><span>인사말·오시는 길</span></div></button>
         </div>
@@ -1261,7 +1269,7 @@ function renderContacts(){
   contacts.forEach(ct=>{
     const b=el("button","callbtn"); b.type="button";
     const circ=el("div","circ",ct.icon);
-    const mid=el("div");
+    const mid=el("div","mid");
     mid.appendChild(el("b",null,ct.department));
     mid.appendChild(el("span",null,ct.description));
     const goTag=el("div","go","전화");
