@@ -175,17 +175,18 @@ h2.sec:first-child{margin-top:.2rem;}
 .reco-card b{font-size:.95rem; color:var(--main-deep);}
 .reco-card span{font-size:.78rem; color:var(--ink-soft);}
 
-/* 메뉴 타일 */
+/* 메뉴 타일 — 아이콘+제목 한 줄, 부제(괄호)는 그 아래 */
 .tiles{display:grid; grid-template-columns:1fr 1fr; gap:.7rem;}
 .tile{
   background:var(--card); border:1px solid var(--line); border-radius:18px;
-  padding:1rem .9rem; min-height:104px; cursor:pointer;
-  display:flex; flex-direction:column; justify-content:space-between;
-  text-align:left; font-family:inherit; font-size:1rem;
+  padding:1rem .95rem; min-height:88px; cursor:pointer;
+  display:flex; flex-direction:column; justify-content:center; gap:.35rem;
+  text-align:left; font-family:inherit;
 }
-.tile .ic{font-size:1.6rem;}
-.tile b{font-size:.98rem;}
-.tile span{font-size:.76rem; color:var(--ink-soft);}
+.tile .tile-head{display:flex; align-items:center; gap:.45rem;}
+.tile .tile-ic{font-size:1.4rem; flex-shrink:0; line-height:1;}
+.tile .tile-head b{font-size:.98rem; color:var(--ink); line-height:1.3;}
+.tile .tile-sub{font-size:.76rem; color:var(--ink-soft); font-style:italic; line-height:1.4;}
 
 /*
 /* 전화 */
@@ -464,10 +465,22 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
 
         <h2 class="sec">🧭 메뉴</h2>
         <div class="tiles">
-          <button class="tile" type="button" data-go="map"><div class="ic">📍</div><div><b>사업장 지도</b><br><span>사업단 위치 확인</span></div></button>
-          <button class="tile" type="button" data-go="ai-guide"><div class="ic">❓</div><div><b>질문하기</b><br><span>로그인 없이 바로 보기</span></div></button>
-          <button class="tile" type="button" data-go="call"><div class="ic">📞</div><div><b>전화 걸기</b><br><span>담당자별 번호</span></div></button>
-          <button class="tile" type="button" data-go="info"><div class="ic">🏢</div><div><b>센터 소개</b><br><span>인사말·오시는 길</span></div></button>
+          <button class="tile" type="button" data-go="map">
+            <span class="tile-head"><span class="tile-ic">📍</span><b>사업장 지도</b></span>
+            <span class="tile-sub">(사업단 위치·주소 확인)</span>
+          </button>
+          <button class="tile" type="button" data-go="ai-guide">
+            <span class="tile-head"><span class="tile-ic">❓</span><b>질문하기</b></span>
+            <span class="tile-sub">(로그인 없이 바로 보기)</span>
+          </button>
+          <button class="tile" type="button" data-go="call">
+            <span class="tile-head"><span class="tile-ic">📞</span><b>전화 걸기</b></span>
+            <span class="tile-sub">(담당자별 연락처)</span>
+          </button>
+          <button class="tile" type="button" data-go="info">
+            <span class="tile-head"><span class="tile-ic">🏢</span><b>센터 소개</b></span>
+            <span class="tile-sub">(인사말·오시는 길)</span>
+          </button>
         </div>
 
         <!-- 숫자로 보는 평택지역자활센터 -->
@@ -759,7 +772,9 @@ const centerStats = [
   { num:"2001", unit:"년", label:"센터 창립연도" },
   { num:"40",   unit:"개", label:"자활근로사업단" },
   { num:"32",   unit:"개", label:"사업장" },
-  { num:"6",    unit:"개팀", label:"정식 자활팀" },
+  { num:"4",    unit:"개팀", label:"자활사업팀" },
+  { num:"1",    unit:"개팀", label:"회계총무팀" },
+  { num:"1",    unit:"개팀", label:"사례관리팀" },
   { num:"4",    unit:"개팀", label:"프로젝트팀 소속" },
   { num:"4",    unit:"가지", label:"핵심 역할" }
 ];
