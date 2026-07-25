@@ -21,6 +21,15 @@
 <meta name="twitter:title" content="토닥토닥 길잡이 — 평택지역자활센터">
 <meta name="twitter:description" content="자활사업 신청부터 사업단까지, 필요한 정보를 쉽고 따뜻하게 알려드립니다.">
 <meta name="twitter:image" content="https://nhs7534-creator.github.io/todakapp/thumbnail.png">
+
+<!-- 홈 화면에 앱처럼 설치되도록 하는 설정 -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2F7D52">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <style>
 /* ============================================================
    [1] 기본 색상과 크기 — 평택지역자활센터 녹색 계열 고정
@@ -397,6 +406,27 @@ html[data-contrast="on"] details.faq.resp-card{background:var(--card); border:2p
 .ntab-item b{display:block; font-size:.93rem; color:var(--ink); line-height:1.35;}
 .ntab-item span{display:block; font-size:.78rem; color:var(--ink-soft); line-height:1.4; margin-top:.1rem;}
 .ntab-item .ni-go{color:var(--main); font-weight:800; flex-shrink:0;}
+
+/* 앱 설치 안내 배너 */
+.install-bar{
+  position:fixed; bottom:calc(62px + env(safe-area-inset-bottom)); left:50%;
+  transform:translateX(-50%); width:calc(100% - 1.6rem); max-width:414px;
+  background:var(--main-deep); color:#fff; border-radius:16px;
+  padding:.8rem .9rem; display:flex; align-items:center; gap:.6rem;
+  box-shadow:0 4px 16px rgba(0,0,0,.25); z-index:20;
+}
+.install-bar .ib-text{flex:1; min-width:0;}
+.install-bar .ib-text b{display:block; font-size:.92rem; line-height:1.35;}
+.install-bar .ib-text span{display:block; font-size:.76rem; opacity:.9; line-height:1.4;}
+.install-bar .ib-btn{
+  background:var(--accent); color:#4A3A08; border:none; border-radius:12px;
+  padding:.6rem 1rem; font-family:inherit; font-weight:800; font-size:.88rem;
+  cursor:pointer; flex-shrink:0; min-height:44px;
+}
+.install-bar .ib-close{
+  background:none; border:none; color:rgba(255,255,255,.8); font-size:1rem;
+  cursor:pointer; padding:.3rem; flex-shrink:0; min-height:44px; min-width:32px;
+}
 
 /* 하단 메뉴 */
 nav.bottom{
@@ -1754,6 +1784,60 @@ function setupNewsTabs(){
     });
   });
   renderNewsTab("tv");
+}
+
+/* ============================================================
+   [L] 앱 설치 — 홈 화면에 추가하기
+   ============================================================ */
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e)=>{
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  showInstallBar();
+});
+
+function showInstallBar(){
+  if(document.getElementById("installBar")) return;
+  if(store.get("installBarClosed") === "1") return;
+
+  const bar = el("div","install-bar");
+  bar.id = "installBar";
+  const txt = el("div","ib-text");
+  txt.appendChild(el("b",null,"휴대폰에 앱으로 설치하기"));
+  txt.appendChild(el("span",null,"홈 화면에서 바로 열 수 있어요"));
+  bar.appendChild(txt);
+
+  const btn = el("button","ib-btn","설치");
+  btn.type = "button";
+  btn.addEventListener("click", async ()=>{
+    if(!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    try{ await deferredInstallPrompt.userChoice; }catch(e){}
+    deferredInstallPrompt = null;
+    bar.remove();
+  });
+  bar.appendChild(btn);
+
+  const close = el("button","ib-close","✕");
+  close.type = "button";
+  close.setAttribute("aria-label","설치 안내 닫기");
+  close.addEventListener("click", ()=>{
+    store.set("installBarClosed","1");
+    bar.remove();
+  });
+  bar.appendChild(close);
+
+  document.querySelector(".phone").appendChild(bar);
+}
+
+// 서비스워커 등록 (앱 설치와 오프라인 열람에 필요)
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("sw.js").catch((err)=>{
+      console.log("서비스워커 등록에 실패했습니다(앱 기능만 제한됩니다).", err);
+    });
+  });
 }
 
 /* ============================================================
