@@ -267,6 +267,12 @@ details.faq[open] summary::after{transform:rotate(180deg);}
 .step-acc summary .step-title{font-size:.94rem; font-weight:800; color:var(--ink);}
 .step-acc summary .step-summary{font-size:.8rem; color:var(--ink-soft); font-weight:500; line-height:1.5;}
 
+/* 공지사항 — 눌러서 세부 내용이 펼쳐지는 카드 */
+.notice-acc summary{flex-direction:column; align-items:flex-start; gap:.3rem;}
+.notice-acc .n-badges{display:flex; flex-wrap:wrap; gap:.3rem;}
+.notice-acc .n-date{font-size:.76rem; color:var(--ink-soft);}
+.notice-acc .n-title{font-size:.98rem; font-weight:800; color:var(--ink); line-height:1.4;}
+
 /* 센터소개 — 역할 카드 */
 .service-grid{display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-bottom:.7rem;}
 .service-card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:1rem .9rem; text-align:left;}
@@ -1322,6 +1328,21 @@ function loadJSONP(url, timeoutMs){
   });
 }
 
+function buildNoticeCard(n){
+  const d = el("details","faq notice-acc");
+  const sum = document.createElement("summary");
+  const badges = el("div","n-badges");
+  badges.appendChild(el("span","badge"+(n.category==="모집"?" y":""), n.category));
+  if(n.important){ badges.appendChild(el("span","badge r","중요")); }
+  sum.appendChild(badges);
+  sum.appendChild(el("span","n-date", fmtDateList(n.date)));
+  sum.appendChild(el("span","n-title", n.title));
+  d.appendChild(sum);
+  const body = el("div","faq-body");
+  body.appendChild(el("p","faq-p", n.description));
+  d.appendChild(body);
+  return d;
+}
 async function renderNotices(){
   const full=document.getElementById("noticeList");
   const home=document.getElementById("homeNotices");
@@ -1339,15 +1360,8 @@ async function renderNotices(){
 
   const sorted=[...list].sort((a,b)=> firstDateOf(b.date).localeCompare(firstDateOf(a.date)));
   sorted.forEach((n,i)=>{
-    const c=el("div","card");
-    const bd=el("span","badge"+(n.category==="모집"?" y":""), n.category);
-    c.appendChild(bd);
-    if(n.important){ c.appendChild(el("span","badge r","중요")); }
-    c.appendChild(el("div","date", fmtDateList(n.date)));
-    c.appendChild(el("h3",null,n.title));
-    c.appendChild(el("p",null,n.description));
-    full.appendChild(c);
-    if(i<2){ home.appendChild(c.cloneNode(true)); }
+    full.appendChild(buildNoticeCard(n));
+    if(i<2){ home.appendChild(buildNoticeCard(n)); }
   });
 }
 function renderContacts(){
