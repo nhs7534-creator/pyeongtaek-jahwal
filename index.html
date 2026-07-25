@@ -141,27 +141,7 @@ h2.sec:first-child{margin-top:.2rem;}
 .badge.y{background:#FBF1D6; color:#96700F;}
 .badge.r{background:#FBE5DF; color:var(--danger);}
 
-/* 홈 대표 버튼 */
-.hero{
-  width:100%; border:none; cursor:pointer; font-family:inherit; text-align:left;
-  background:var(--main); color:#fff; border-radius:20px; padding:1.2rem 1.1rem;
-  display:flex; align-items:center; gap:.9rem; box-shadow:0 3px 10px rgba(0,0,0,.1);
-  margin-bottom:.7rem;
-}
-.hero .ic{font-size:2.1rem;}
-.hero b{font-size:1.18rem; display:block; color:#fff;}
-.hero b em{color:var(--accent); font-style:normal;}
-.hero span{font-size:.84rem; opacity:.95;}
-
-.bigcall{
-  width:100%; border:2px solid var(--main); cursor:pointer; font-family:inherit;
-  background:var(--card); color:var(--ink); border-radius:20px; padding:1rem 1.1rem;
-  display:flex; align-items:center; gap:.9rem; margin-bottom:1rem; text-align:left;
-}
-.bigcall .ic{font-size:1.9rem;}
-.bigcall b{font-size:1.1rem; display:block; color:var(--main-deep);}
-.bigcall span{font-size:.8rem; color:var(--ink-soft);}
-
+/*
 /* 대상 선택 */
 .who{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:.9rem 1rem; margin-bottom:1rem;}
 .who h3{font-size:.95rem; margin-bottom:.2rem;}
@@ -207,28 +187,7 @@ h2.sec:first-child{margin-top:.2rem;}
 .tile b{font-size:.98rem;}
 .tile span{font-size:.76rem; color:var(--ink-soft);}
 
-/* 콘텐츠 카드(캐러셀) */
-.caro{
-  display:flex; gap:.7rem; overflow-x:auto; scroll-snap-type:x mandatory;
-  padding:.2rem 1rem .3rem; -webkit-overflow-scrolling:touch; scrollbar-width:none;
-}
-.caro::-webkit-scrollbar{display:none;}
-.slide{
-  flex:0 0 85%; scroll-snap-align:center; border-radius:18px;
-  padding:1.05rem 1rem; min-height:118px; cursor:pointer; border:none;
-  text-align:left; font-family:inherit; color:#fff;
-  display:flex; flex-direction:column; justify-content:space-between;
-}
-.slide b{font-size:1.05rem; display:block; margin-top:.25rem;}
-.slide span{font-size:.82rem; opacity:.95;}
-.slide .tag{align-self:flex-start; font-size:.7rem; font-weight:800; background:rgba(255,255,255,.28); border-radius:6px; padding:.12rem .5rem;}
-.sl-tv{background:#B05A45;}
-.sl-news{background:#4A7FA5;}
-.sl-ai{background:var(--main-deep);}
-.dots{display:flex; justify-content:center; gap:.35rem; margin:.45rem 0 0;}
-.dots i{width:8px; height:8px; border-radius:50%; background:#CBD6CC;}
-.dots i.on{background:var(--main); width:20px; border-radius:99px;}
-
+/*
 /* 전화 */
 .callbtn{
   display:flex; align-items:center; gap:.9rem; width:100%;
@@ -364,6 +323,65 @@ html[data-contrast="on"] details.faq.resp-card{background:var(--card); border:2p
 }
 .link-card p{font-size:.86rem; color:var(--ink); margin-bottom:.7rem; line-height:1.6;}
 
+/* 홈 — 첫화면 큰 문구 + 행동 버튼 3개 */
+.hero-box{
+  background:linear-gradient(160deg, var(--main-deep), var(--main));
+  color:#fff; border-radius:20px; padding:1.4rem 1.2rem 1.2rem;
+  margin-bottom:.8rem; box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+.hero-eyebrow{font-size:.66rem; letter-spacing:.14em; opacity:.75; font-weight:700; margin-bottom:.5rem;}
+.hero-title{font-size:1.5rem; font-weight:800; line-height:1.35; margin-bottom:.5rem;}
+.hero-title em{color:var(--accent); font-style:normal;}
+.hero-desc{font-size:.85rem; opacity:.95; line-height:1.5; margin-bottom:1rem;}
+.hero-actions{display:flex; gap:.45rem;}
+.ha-btn{
+  flex:1; min-width:0; background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.55);
+  color:#fff; border-radius:12px; padding:.7rem .3rem; font-family:inherit;
+  font-size:.82rem; font-weight:700; cursor:pointer; min-height:48px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.ha-btn.primary{background:var(--accent); color:#4A3A08; border-color:var(--accent);}
+
+/* 홈 — 큰 전화번호 배너 */
+.phone-banner{
+  width:100%; background:var(--card); border:2px solid var(--main); border-radius:18px;
+  padding:1rem 1.1rem; margin-bottom:1rem; font-family:inherit; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:.15rem; text-align:center;
+}
+.pb-label{font-size:.78rem; font-weight:700; color:var(--main-deep); letter-spacing:.02em;}
+.pb-number{font-size:1.75rem; font-weight:800; color:var(--main-deep); letter-spacing:-.01em; line-height:1.25;}
+.pb-desc{font-size:.76rem; color:var(--ink-soft);}
+
+/* 홈 — 숫자로 보는 센터 */
+.stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-bottom:.3rem;}
+.stat-card{
+  background:var(--card); border:1px solid var(--line); border-radius:16px;
+  padding:.9rem .8rem; text-align:center;
+}
+.stat-num{font-size:1.6rem; font-weight:800; color:var(--main); line-height:1.2;}
+.stat-num .unit{font-size:.85rem; font-weight:700; margin-left:.1rem;}
+.stat-label{font-size:.78rem; color:var(--ink-soft); margin-top:.15rem; line-height:1.35;}
+
+/* 홈 — 소식 탭 */
+.news-tabs{display:flex; gap:.4rem; margin-bottom:.7rem;}
+.ntab{
+  flex:1; min-width:0; background:var(--card); border:1.5px solid var(--line);
+  border-radius:12px; padding:.55rem .3rem; font-family:inherit; font-size:.8rem;
+  font-weight:700; color:var(--ink-soft); cursor:pointer; min-height:48px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.ntab.on{background:var(--main); border-color:var(--main); color:#fff;}
+.ntab-item{
+  width:100%; background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:.85rem 1rem; margin-bottom:.55rem; font-family:inherit; text-align:left;
+  cursor:pointer; display:flex; align-items:center; gap:.7rem; min-height:48px;
+}
+.ntab-item .ni-ic{font-size:1.3rem; flex-shrink:0;}
+.ntab-item .ni-mid{flex:1; min-width:0;}
+.ntab-item b{display:block; font-size:.93rem; color:var(--ink); line-height:1.35;}
+.ntab-item span{display:block; font-size:.78rem; color:var(--ink-soft); line-height:1.4; margin-top:.1rem;}
+.ntab-item .ni-go{color:var(--main); font-weight:800; flex-shrink:0;}
+
 /* 하단 메뉴 */
 nav.bottom{
   position:fixed; bottom:0; left:50%; transform:translateX(-50%);
@@ -409,14 +427,23 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
     <!-- 홈 -->
     <section class="screen" id="scr-home">
       <div class="pad">
-        <button class="hero" type="button" data-go="first-guide">
-          <div class="ic">🌱</div>
-          <div><b>처음 오셨나요? <em>여기를 누르세요</em></b><span>자활이 무엇인지, 어떻게 시작하는지 쉽게 알려드려요</span></div>
-        </button>
+        <!-- 첫화면 큰 문구 + 행동 버튼 3개 -->
+        <div class="hero-box">
+          <div class="hero-eyebrow">PYEONGTAEK JAHWAL</div>
+          <h2 class="hero-title">일을 통해 찾는<br><em>나의 새로운 하루</em></h2>
+          <p class="hero-desc">자활사업 신청부터 사업단까지, 쉽고 따뜻하게 안내합니다.</p>
+          <div class="hero-actions">
+            <button class="ha-btn primary" type="button" data-go="first-guide">처음 안내</button>
+            <button class="ha-btn" type="button" data-go="call">전화 문의</button>
+            <button class="ha-btn" type="button" data-go="map">사업장 지도</button>
+          </div>
+        </div>
 
-        <button class="bigcall" type="button" id="homeCallBtn">
-          <div class="ic">📞</div>
-          <div><b>센터에 전화하기</b><span id="homeCallHours"></span></div>
+        <!-- 큰 전화번호 배너 -->
+        <button class="phone-banner" type="button" id="phoneBannerBtn">
+          <span class="pb-label">상담 문의</span>
+          <span class="pb-number" id="pbNumber"></span>
+          <span class="pb-desc" id="pbHours"></span>
         </button>
 
         <div class="who" id="whoBox">
@@ -443,14 +470,19 @@ footer.demo{text-align:center; font-size:.72rem; color:var(--ink-soft); padding:
           <button class="tile" type="button" data-go="info"><div class="ic">🏢</div><div><b>센터 소개</b><br><span>인사말·오시는 길</span></div></button>
         </div>
 
+        <!-- 숫자로 보는 평택지역자활센터 -->
+        <h2 class="sec">📊 숫자로 보는 평택지역자활센터</h2>
+        <div class="stat-grid" id="statGrid"></div>
+
+        <!-- 소식 (탭으로 정리) -->
         <h2 class="sec">🎬 볼거리·읽을거리</h2>
+        <div class="news-tabs" id="newsTabs">
+          <button class="ntab on" type="button" data-tab="tv">평자TV</button>
+          <button class="ntab" type="button" data-tab="news">소식지</button>
+          <button class="ntab" type="button" data-tab="faq">자주 묻는 질문</button>
+        </div>
+        <div id="newsTabBody"></div>
       </div>
-      <div class="caro" id="caro">
-        <button class="slide sl-tv" type="button" data-go="tv"><span class="tag">평자TV</span><div><b>평자극장</b><span>자활사업 참여 과정을 담은 다큐멘터리</span></div></button>
-        <button class="slide sl-news" type="button" data-go="news"><span class="tag">소식지</span><div><b>2026년 1분기 소식지</b><span>평택자활 26년 1분기 소식지가 나왔어요</span></div></button>
-        <button class="slide sl-ai" type="button" data-go="ai-guide"><span class="tag">궁금한 것 물어보기</span><div><b>자주 묻는 질문 모음</b><span>로그인 없이 바로 답을 확인하세요</span></div></button>
-      </div>
-      <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
     </section>
 
     <!-- 자활사업 쉽게 알아보기 (처음 안내) -->
@@ -722,6 +754,16 @@ const newsletters = [
     link:"https://ptjahwal.or.kr/menu06/webzine/?mod=document&uid=282", latest:true }
 ];
 
+/* 숫자로 보는 평택지역자활센터 — 값이 바뀌면 여기만 수정하면 됩니다 */
+const centerStats = [
+  { num:"2001", unit:"년", label:"센터 창립연도" },
+  { num:"40",   unit:"개", label:"자활근로사업단" },
+  { num:"32",   unit:"개", label:"사업장" },
+  { num:"6",    unit:"개팀", label:"정식 자활팀" },
+  { num:"4",    unit:"개팀", label:"프로젝트팀 소속" },
+  { num:"4",    unit:"가지", label:"핵심 역할" }
+];
+
 /* 센터 인사말 */
 const centerIntro = {
   title: "함께 일어서고, 함께 살아가는 길",
@@ -764,9 +806,14 @@ const centerTeams = [
   { id:"accounting", name:"회계총무팀", summary:"센터와 사업단 운영에 필요한 행정을 담당합니다.",
     description:"센터와 자활근로사업이 안정적으로 운영될 수 있도록 회계, 행정과 사회보험 업무를 담당합니다.",
     programs:["센터와 자활근로 회계","사회보험","행정문서","성과관리","행정 점검 지원"] },
-  { id:"project", name:"프로젝트팀", summary:"홍보, 영상 제작과 사업단 환경개선을 지원합니다.",
-    description:"직원의 전문성과 재능을 활용하여 홍보, 영상, 마케팅과 사업단 환경개선을 지원합니다.",
-    programs:["평자티어 직원 자원봉사","온라인 홍보와 마케팅","평자TV 영상 제작","사업단 인테리어 자문과 지원"] }
+  { id:"project", name:"프로젝트팀", summary:"정식 자활팀은 아니며, 영상제작팀·평자티어·상조회·자활동행팀 4개로 구성됩니다.",
+    description:"직원의 전문성과 재능을 살려 홍보, 봉사, 소통과 여가 활동을 지원하는 4개의 소모임으로 운영됩니다.",
+    programs:[
+      "영상제작팀 — 센터 소식지 제작, 사업단 홍보 영상, 행사 스케치 등 영상 촬영·편집을 담당합니다",
+      "평자티어 — 나눔과 봉사로 따뜻한 세상을 만드는 직원 자원봉사단입니다",
+      "상조회 — 회원 간 소통과 즐거운 화합을 위한 모임입니다",
+      "자활동행팀 — 등산·스포츠 등 동호회 활동 지원과 참여주민 대상 프로그램을 기획·운영합니다"
+    ] }
 ];
 
 /* 자활사업 참여절차 5단계 (접이식 아코디언) */
@@ -1557,22 +1604,71 @@ function renderRights(){
 }
 
 /* ============================================================
-   [J] 캐러셀 점 표시 — IntersectionObserver 사용
+   [I-4] 홈 — 숫자로 보는 센터 · 소식 탭
    ============================================================ */
-function setupCarousel(){
-  const caro=document.getElementById("caro");
-  const dots=document.querySelectorAll("#dots i");
-  if(!caro || !("IntersectionObserver" in window)) return;
-  const slides=[...caro.querySelectorAll(".slide")];
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        const idx=slides.indexOf(en.target);
-        dots.forEach((d,i)=>d.classList.toggle("on", i===idx));
-      }
+function renderStats(){
+  const box = document.getElementById("statGrid");
+  if(!box) return;
+  box.replaceChildren();
+  centerStats.forEach(s=>{
+    const c = el("div","stat-card");
+    const n = el("div","stat-num", s.num);
+    if(s.unit){ n.appendChild(el("span","unit", s.unit)); }
+    c.appendChild(n);
+    c.appendChild(el("div","stat-label", s.label));
+    box.appendChild(c);
+  });
+}
+
+/* 소식 탭 — 평자TV / 소식지 / 자주 묻는 질문 */
+const NEWS_TABS = {
+  tv: ()=> videos.map(v=>({
+    icon:"🎬", title:v.title, desc:v.description,
+    action:()=>{ if(v.videoUrl) window.open(v.videoUrl,"_blank","noopener,noreferrer"); else go("tv"); }
+  })),
+  news: ()=> newsletters.map(n=>({
+    icon:"📰", title:n.title, desc:n.description,
+    action:()=>{ if(n.link) window.open(n.link,"_blank","noopener,noreferrer"); else go("news"); }
+  })),
+  faq: ()=> faqs.slice(0,4).map(f=>({
+    icon:"❓", title:f.q, desc:(f.paragraphs && f.paragraphs[0]) ? f.paragraphs[0] : "",
+    action:()=>go("ai-guide")
+  }))
+};
+function renderNewsTab(tabKey){
+  const body = document.getElementById("newsTabBody");
+  if(!body) return;
+  body.replaceChildren();
+  const items = (NEWS_TABS[tabKey] || NEWS_TABS.tv)();
+  items.forEach(it=>{
+    const b = el("button","ntab-item"); b.type="button";
+    b.appendChild(el("div","ni-ic", it.icon));
+    const mid = el("div","ni-mid");
+    mid.appendChild(el("b",null,it.title));
+    if(it.desc) mid.appendChild(el("span",null,it.desc));
+    b.appendChild(mid);
+    b.appendChild(el("div","ni-go","›"));
+    b.addEventListener("click", it.action);
+    body.appendChild(b);
+  });
+  // 더보기 버튼 (자주 묻는 질문 탭은 전체 화면으로)
+  const moreRoute = tabKey==="tv" ? "tv" : (tabKey==="news" ? "news" : "ai-guide");
+  const more = el("button","rec-btn","전체 보기 →"); more.type="button";
+  more.style.cssText="background:var(--card);border:1.5px solid var(--line);color:var(--ink);justify-content:center;";
+  more.addEventListener("click", ()=>go(moreRoute));
+  body.appendChild(more);
+}
+function setupNewsTabs(){
+  const tabs = document.getElementById("newsTabs");
+  if(!tabs) return;
+  tabs.querySelectorAll(".ntab").forEach(t=>{
+    t.addEventListener("click", ()=>{
+      tabs.querySelectorAll(".ntab").forEach(x=>x.classList.remove("on"));
+      t.classList.add("on");
+      renderNewsTab(t.dataset.tab);
     });
-  },{root:caro, threshold:.6});
-  slides.forEach(s=>io.observe(s));
+  });
+  renderNewsTab("tv");
 }
 
 /* ============================================================
@@ -1590,7 +1686,8 @@ function init(){
   document.getElementById("logoSub").textContent = CONFIG.centerName;
   document.getElementById("serviceSubtitle").textContent = CONFIG.serviceSubtitle;
   document.getElementById("todayText").textContent = CONFIG.todayNotice;
-  document.getElementById("homeCallHours").textContent = CONFIG.operatingHours;
+  document.getElementById("pbNumber").textContent = CONFIG.mainPhone;
+  document.getElementById("pbHours").textContent = CONFIG.operatingHours;
   document.getElementById("callHoursLine").textContent = "운영시간: "+CONFIG.operatingHours;
   document.getElementById("demoBanner").hidden = !CONFIG.isDemo;
   document.getElementById("footNote").textContent = CONFIG.isDemo
@@ -1613,7 +1710,7 @@ function init(){
     if(history.length>1){ history.back(); } else { go("home"); }
   });
   document.getElementById("quickCall").addEventListener("click", ()=>tryCall("사무실 담당자", CONFIG.mainPhone, CONFIG.operatingHours));
-  document.getElementById("homeCallBtn").addEventListener("click", ()=>go("call"));
+  document.getElementById("phoneBannerBtn").addEventListener("click", ()=>tryCall("사무실 담당자", CONFIG.mainPhone, CONFIG.operatingHours));
   document.getElementById("whoReset").addEventListener("click", ()=>{ store.del("who"); renderWho(); });
   document.getElementById("rightsCallBtn").addEventListener("click", ()=>tryCall("사무실 담당자", CONFIG.mainPhone, CONFIG.operatingHours));
   document.getElementById("rightsTalkBtn").addEventListener("click", ()=>{
@@ -1631,7 +1728,7 @@ function init(){
   // 목록 그리기
   renderWho(); renderNotices(); renderContacts(); renderTeamFilter(); renderTeams();
   renderVideos(); renderNews(); renderSteps(); renderFaq(); renderInfo(); renderRights();
-  setupCarousel();
+  renderStats(); setupNewsTabs();
 
   // 첫 화면
   if(!location.hash){ location.hash="home"; }
